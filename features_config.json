@@ -1,12 +1,16 @@
 {
-    "features": [
-        "return_1d",
-        "return_3d",
-        "return_5d",
-        "sma_5",
-        "sma_10",
-        "rsi_14",
-        "macd"
-    ],
-    "label": "direction"
+  "features": [
+    "return_1d",
+    "log_return_1d",
+    "return_3d",
+    "return_5d",
+    "sma_5",
+    "sma_10",
+    "rsi_14",
+    "macd",
+    "macd_signal",
+    "macd_hist"
+  ],
+  "target": "label",
+  "label": "direction"
 }

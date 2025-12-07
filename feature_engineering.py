@@ -41,13 +41,12 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
     # Daily & Log Returns
-    df["ret_1d"] = df.groupby("ticker")["close"].pct_change()
-    df["log_ret_1d"] = np.log1p(df["ret_1d"])
+    df["return_1d"] = df.groupby("ticker")["close"].pct_change()
+    df["log_return_1d"] = np.log1p(df["return_1d"])
 
-    # Lagged/Multi-day Rolling Returns
     for w in [3, 5]:
-        df[f"ret_{w}d"] = (
-            df.groupby("ticker")["ret_1d"]
+        df[f"return_{w}d"] = (
+            df.groupby("ticker")["return_1d"]
             .rolling(w)
             .sum()
             .reset_index(level=0, drop=True)
@@ -83,7 +82,7 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
         df.loc[grp.index, "macd_hist"] = hist.values
 
     # Label for Next-Day Classification === #
-    df["future_ret_1d"] = df.groupby("ticker")["ret_1d"].shift(-1)
+    df["future_ret_1d"] = df.groupby("ticker")["return_1d"].shift(-1)
     df["label"] = (df["future_ret_1d"] > 0).astype(int)
 
     # Remove NaNs from rolling calc edges
