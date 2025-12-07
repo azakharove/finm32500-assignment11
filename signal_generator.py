@@ -1,0 +1,1 @@
+# Converts predictions into trading signals
