@@ -1,16 +1,19 @@
-# This is a sample Python script.
+# main.py
+"""
+Entry point for the ML trading assignment.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+Running this file will:
+  - Build the dataset (feature_engineering.build_dataset)
+  - Train Logistic Regression and Random Forest models
+  - Evaluate models (accuracy, precision, recall, MSE, R², CV accuracy)
+  - Generate plots (confusion matrices, residuals, prediction distributions,
+    equity curves, feature importance)
+  - Run backtests for each model vs buy-and-hold
+  - Write comparison.md summarizing results
+"""
+
+from train_model import main as run_full_pipeline
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    run_full_pipeline()
